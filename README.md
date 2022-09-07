@@ -1,4 +1,5 @@
-rc="https://cdn3.iconfinder.com/data/icons/egg/500/Egg_food_cracked_whipped-512.png" align="middle" width="100" height="100"></a> simple_shell
+# Simple shell
+<a><img src="https://user-images.githubusercontent.com/107338221/188614438-f184a7f0-c87d-4860-a8bb-c0e9226a2075.png" align="middle" width="200" height="200"></a> 
 
 
 ## Table of Contents
@@ -19,58 +20,120 @@ Standard functions and system calls employed in simple_shell include:
 
 ## File Structure
 * [AUTHORS](AUTHORS) - List of contributors to this repository
-* [man_1_simple_shell](man_1_simple_shell) - Manual page for the simple_shell
 * [shell.h](shell.h) - program header file
-* [builtins.c](builtins.c) - major builtin functions
-  * `check_for_builtins` - checks to see if the user's command matches a builtin
-  * `new_exit` - exits the shell with the option of a specified status
-  * `_env` - prints the shell's environment variables to the standard output
-  * `new_setenv` - initializes a new environment variable, or modifies an existing one
-  * `new_unsetenv` - removes an environment variable
-* [builtins2.c](builtins2.c) - helper functions for the builtins
-  * `add_key` - creates a new environment variable
-  * `find_key` - finds an environment variable in the environment array
-  * `add_value` - creates a new environment variable string
-  * `_atoi` - converts a string into a non-negative integer
-* [environment.c](environment.c) - functions related to the environment
-  * `make_env` - creates the shell's environment from the parent process
-  * `free_env` - frees the shell's environment
-* [errors.c](errors.c) - functions related to printing errors
-  * `print_error` - prints an error message to the standard error
-  * `_puts2` - prints a string to the standard error
-  * `_uitoa` - converts an unsigned integer to a string
-* [memory_allocation.c](memory_allocation.c) - memory allocation functions
-  * `_realloc` - a custom realloc function for arrays of pointers
-* [new_strtok.c](new_strtok.c) - custom strtok and helper functions
-  * `check_match` - checks if a character matches any in a string
-  * `new_strtok` - a custom strtok for the shell
-* [path.c](path.c) - functions related to executing commands
-  * `path_execute` - executes a command in the PATH
-  * `find_path` - finds the PATH environment variable
-  * `check_for_path` - checks if the command is in the PATH
-  * `execute_cwd` - executes a command with an absolute path
-  * `check_for_dir` - checks if the command contains an absolute path
-* [simple_shell.c](simple_shell.c) - essential functions to the shell
-  * `main` - the main function of the program
-  * `sig_handler` - handles SIGINT
-* [strfunc.c](strfunc.c) - functions related to string manipulation
-  * `_puts` - writes a string to standart output
+* [_atoi.c](_atoi.c) - major builtin functions
+  * `interactive` - returns true if shell is interactive mode
+  * `is_delim` - checks if character is a delimeter
+  * `_isalpha` - checks for alphabetic character
+  * `_atoi` - converts a string to an integer
+* [builtin.c](builtin.c) - helper functions for the builtins
+  * `_myexit` - exits the shell
+  * `_mycd` - changes the current directory of the process
+  * `_myhelp` - changes the current directory of the process
+* [builtin1.c](builtin1.c) - functions related to the environment
+  * `_myhistory` - displays the history list, one command by line, preceded
+  * `unset_alias` - sets alias to string
+  * `set_alias` - sets alias to string
+  * `print_alias` - prints an alias string
+  * `_myalias` - mimics the alias builtin (man alias)
+* [environ.c](environ.c) - functions related to printing errors
+  * `_myenv` - prints the current environment
+  * `_getenv` - gets the value of an environ variable
+  * `_mysetenv` - Initialize a new environment variable or modify an existing one
+  * `_myunsetenv` - Remove an environment variable
+  * `populate_env_list` - populates env linked list
+* [errors.c](errors.c) - memory allocation functions
+  * `_eputs` - prints an input string
+  *  `_eputchar` - writes the character c to stderr
+  *  `_putfd` - writes the character c to given fd
+  *  `_putsfd` - prints an input string  
+* [errors1.c](errors1.c) - custom strtok and helper functions
+  * `_erratoi` - converts a string to an integer
+  * `print_error` - prints an error message
+  * `print_d` - function prints a decimal (integer) number (base 10)
+  * `convert_number` - converter function, a clone of itoa
+  * `remove_comments` - function replaces first instance of '#' with '\0'
+* [exits.c](exits.c) - functions related to executing commands
+  * `*_strncpy` - copies a string
+  * `*_strncat` - concatenates two strings
+  * `*_strchr` - locates a character in a string
+* [getLine.c](getLine.c) - functions related to executing commands
+  * `input_buf` - buffers chained commands
+  * `get_input` - gets a line minus the newline
+  * `read_buf` - reads a buffer
+  * `_getline` - gets the next line of input from STDIN
+  * `sigintHandler` - blocks ctrl-C
+* [getenv.c](getenv.c) - functions related to executing commands
+  * `get_environ` - returns the string array copy of our environ
+  * `_unsetenv` - Remove an environment variable
+  * `_setenv` - Initialize a new environment variable or modify an existing one
+* [getinfo.c](getinfo.c) - functions related to executing commands
+  * `clear_info` - initializes info_t struct
+  * `set_info` - initializes info_t struct
+  * `free_info` - frees info_t struct fields
+* [history.c](history.c) - functions related to executing commands
+  * `get_history_file` - gets the history file
+  * `write_history` - creates a file, or appends to an existing file
+  * `read_history` - reads history from file
+  * `build_history_list` - adds entry to a history linked list
+  * `renumber_history` - renumbers the history linked list after changes
+* [lists.c](lists.c) - functions related to executing commands
+  * `add_node` - adds a node to the start of the list
+  * `add_node_end` - adds a node to the end of the list
+  * `print_list_str` - prints only the str element of a list_t linked list
+  * `delete_node_at_index` - deletes node at given index
+  * ` free_list` - frees all nodes of a list
+* [lists1.c](lists1.c) - functions related to executing commands
+  * `list_len` - determines length of linked list
+  * `list_to_strings` - returns an array of strings of the list->str
+  * `print_list` - prints all elements of a list_t linked list
+  * `node_starts_with` - returns node whose string starts with prefix
+  * `get_node_index` - gets the index of a node
+* [main.c](main.c) - entry point
+* [memory.c](memory.c) - functions related to executing commands
+  * `bfree` - frees a pointer and NULLs the address
+* [parser.c](parser.c) - functions related to executing commands
+  * `is_cmd` - determines if a file is an executable command
+  * `dup_chars` - duplicates characters
+  * `find_path` - finds this cmd in the PATH string
+* [realloc.c](realloc.c) - functions related to executing commands
+  * `*_memset` - fills memory with a constant byte
+  * `ffree` - frees a string of strings
+  * `_realloc` - reallocates a block of memory
+* [shell_loop.c](shell_loop.c) - functions related to executing commands
+  * `hsh` - main shell loop
+  * `find_builtin` - finds a builtin command
+  * `find_cmd` - finds a command in PATH
+  * `fork_cmd` - forks a an exec thread to run cmd
+* [string.c](string.c) - functions related to executing commands
+  * `_strlen` - returns the length of a string
+  * `_strcmp` - performs lexicogarphic comparison of two strangs.
+  * `starts_with` - checks if needle starts with haystack
+  * `_strcat` - concatenates two strings
+ * [string1.c](string1.c) - functions related to executing commands
+  * `_strcpy` - copies a string
   * `_strdup` - duplicates a string
-  * `_strcmpr` - compares two strings
-  * `_strcat` - concatenates two strings with a `/` in the middle
-  * `_strlen` - calculates the length of a string
-* [tokenize.c](tokenize.c) - tokenizing function
-  * `tokenize` - creates an array of tokens from a buffer with a specified delimiter
+  * `_puts` - prints an input string
+  * `_putchar - writes the character c to stdout
+ * [tokenizer.c](tokenizer.c) - functions related to executing commands
+  * `**strtow` - splits a string into words. Repeat delimiters are ignored
+  * `**strtow2` - splits a string into words
+ * [vars.c](vars.c) - functions related to executing commands
+  * `is_chain` - test if current char in buffer is a chain delimeter
+  * `check_chain` - checks we should continue chaining based on last status
+  * `replace_alias` - replaces an aliases in the tokenized string
+  * `replace_vars` - replaces vars in the tokenized string
+  * `replace_string` - replaces string
 
 ## Requirements
 
-simple_shell is designed to run in the `Ubuntu 14.04 LTS` linux environment and to be compiled using the GNU compiler collection v. `gcc 4.8.4` with flags`-Wall, -Werror, -Wextra, and -pedantic.`
+simple_shell is designed to run in the `Ubuntu 20.04 LTS` linux environment and to be compiled using the GNU compiler collection v. `gcc`, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
 
 ## Installation
 
-   - Clone this repository: `git clone "https://github.com/alexaorrico/simple_shell.git"`
+   - Clone this repository: `git clone "https://github.com/AbuhaithemAlthry/simple_shell.git"`
    - Change directories into the repository: `cd simple_shell`
-   - Compile: `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+   - Compile: `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
    - Run the shell in interactive mode: `./hsh`
    - Or run the shell in non-interactive mode: example `echo "pwd" | ./hsh`
 
@@ -87,10 +150,10 @@ The simple_shell is designed to execute commands in a similar manner to sh, howe
 - [x] shell continues upon Crtl+C (**^C**)
 - [x] handles comments (#)
 - [x] handles **;**
-- [ ] custom getline type function
-- [ ] handles **&&** and **||**
-- [ ] aliases
-- [ ] variable replacement
+- [x] custom getline type function
+- [x] handles **&&** and **||**
+- [x] aliases
+- [x] variable replacement
 
 
 ### Builtins
@@ -99,9 +162,9 @@ The simple_shell is designed to execute commands in a similar manner to sh, howe
 - [x] env
 - [x] setenv
 - [x] unsetenv
-- [ ] cd
-- [ ] help
-- [ ] history
+- [x] cd
+- [x] help
+- [x] history
 
 ## Example of Use
 Run the executable in your terminal after compiling:
@@ -133,9 +196,9 @@ drwxrwxr-x  8 vagrant vagrant  4096 Jul 19 22:34 .git
 At this time, there are no known bugs.
 
 ## Authors
-Alexa Orrico | [GitHub](https://github.com/alexaorrico) | [Twitter](https://twitter.com/alexa_orrico)
+Seid Muhammed | [GitHub](https://github.com/AbuhaithemAlthry) | [Twitter](https://twitter.com/Abu_Haithem_)
 
-John Cottrell | [GitHub](https://github.com/johncottrell) | [Twitter](https://twitter.com/johnpeterco)
+Selehadin Seid | [GitHub](https://github.com/Saladii) 
 
 ## License
 simple_shell is open source and therefore free to download and use without permission.
