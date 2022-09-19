@@ -111,10 +111,10 @@ Standard functions and system calls employed in simple_shell include:
   * `starts_with` - checks if needle starts with haystack
   * `_strcat` - concatenates two strings
  * [string1.c](string1.c) - functions related to executing commands
-  * `_strcpy` - copies a string
-  * `_strdup` - duplicates a string
-  * `_puts` - prints an input string
-  * `_putchar - writes the character c to stdout
+   * `_strcpy` - copies a string
+   * `_strdup` - duplicates a string
+   * `_puts` - prints an input string
+   * `_putchar - writes the character c to stdout
  * [tokenizer.c](tokenizer.c) - functions related to executing commands
    * `**strtow` - splits a string into words. Repeat delimiters are ignored
    * `**strtow2` - splits a string into words
