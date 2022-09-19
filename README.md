@@ -116,14 +116,14 @@ Standard functions and system calls employed in simple_shell include:
   * `_puts` - prints an input string
   * `_putchar - writes the character c to stdout
  * [tokenizer.c](tokenizer.c) - functions related to executing commands
-  * `**strtow` - splits a string into words. Repeat delimiters are ignored
-  * `**strtow2` - splits a string into words
+   * `**strtow` - splits a string into words. Repeat delimiters are ignored
+   * `**strtow2` - splits a string into words
  * [vars.c](vars.c) - functions related to executing commands
-  * `is_chain` - test if current char in buffer is a chain delimeter
-  * `check_chain` - checks we should continue chaining based on last status
-  * `replace_alias` - replaces an aliases in the tokenized string
-  * `replace_vars` - replaces vars in the tokenized string
-  * `replace_string` - replaces string
+   * `is_chain` - test if current char in buffer is a chain delimeter
+   * `check_chain` - checks we should continue chaining based on last status
+   * `replace_alias` - replaces an aliases in the tokenized string
+   * `replace_vars` - replaces vars in the tokenized string
+   * `replace_string` - replaces string
 
 ## Requirements
 
